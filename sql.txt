@@ -1,0 +1,62 @@
+// 用户信息表
+create table userinfo
+(
+   uid int auto_increment not null primary key comment "管理员编号",
+   	uname varchar(20) comment "登陆名",
+	upsw varchar(20) comment "登陆密码"
+)engine=innodb default charset=utf8;
+
+insert into userinfo values(1,"admin","admin");
+
+// 学院信息表
+create table collegeinfo
+(
+   eid int auto_increment not null primary key comment "学院编号",
+   	ename varchar(50) comment "学院名称",
+	eremark varchar(200) comment "学院备注"
+)engine=innodb default charset=utf8;
+
+// 系别信息表
+create table deptinfo
+(
+   pid int auto_increment not null primary key comment "系别编号",
+   	eid int comment "学院编号",
+	pname varchar(50) comment "系别名",
+	foreign key(eid) references collegeinfo(eid)
+	on update cascade
+	on delete cascade
+)engine=innodb default charset=utf8;
+
+// 专业信息
+create table mojarinfo
+(
+   mid int auto_increment not null primary key comment "专业编号",
+   	pid int comment "系别编号",
+	mname varchar(50) comment "系别名",
+	mremark varchar(200) comment "专业备注",
+	foreign key(pid) references deptinfo(pid)
+	on update cascade
+	on delete cascade
+)engine=innodb default charset=utf8;
+
+// 年级信息
+create table gradeinfo
+(
+   gid int auto_increment not null primary key comment "年级编号",
+	mname varchar(50) comment "年级名称",
+	mremark varchar(200) comment "年级备注"
+)engine=innodb default charset=utf8;
+
+// 年级信息表
+create table myclassinfo
+(
+   cid int auto_increment not null primary key comment "年级编号",
+   	mid int comment "专业编号",
+	gid int comment "年级编号",
+	mname varchar(50) comment "班级名称",
+	mremark varchar(200) comment "班级备注",
+	foreign key(mid) references mojarinfo(mid),
+	foreign key(gid) references gradeinfo(gid)
+	on update cascade
+	on delete cascade
+)engine=innodb default charset=utf8;

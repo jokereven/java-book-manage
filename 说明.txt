@@ -1,0 +1,9 @@
+#java-book-manage
+## 读书管理
+### 环境
+```
+mysql：8.0.27
+java: 15.0.2
+tomcat: 7.0
+编辑器：eclipse-jee-2020-12-R-win32-x86_64(eclipse-web编辑器)
+```
